@@ -4,7 +4,6 @@ import com.mehmetfaruk.bookstore.user.model.User;
 import com.mehmetfaruk.bookstore.user.repo.UserRepository;
 import com.mehmetfaruk.bookstore.user.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -42,7 +41,6 @@ public class AuthenticationService implements AuthenticationProvider {
         for (String role: user.getRoles()){
             authorities.add(new SimpleGrantedAuthority(role));
         }
-
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 name, password, authorities);

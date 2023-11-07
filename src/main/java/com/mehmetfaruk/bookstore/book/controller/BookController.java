@@ -1,6 +1,5 @@
 package com.mehmetfaruk.bookstore.book.controller;
 
-import com.mehmetfaruk.bookstore.book.model.Book;
 import com.mehmetfaruk.bookstore.book.model.BookDAO;
 import com.mehmetfaruk.bookstore.book.service.BookService;
 import lombok.AllArgsConstructor;

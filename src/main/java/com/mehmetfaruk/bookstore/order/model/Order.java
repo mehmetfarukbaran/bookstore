@@ -1,6 +1,7 @@
 package com.mehmetfaruk.bookstore.order.model;
 
 import com.mehmetfaruk.bookstore.book.model.Book;
+import com.mehmetfaruk.bookstore.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
@@ -15,7 +16,7 @@ import java.util.List;
 @Table
 @Entity
 @Data
-public class Order implements Serializable {
+public class Order extends BaseEntity implements Serializable {
 
     @Id
     @Column
@@ -28,8 +29,8 @@ public class Order implements Serializable {
     @Column(nullable = false)
     private Double totalPrice;
 
-    @Column(columnDefinition = "String[]", nullable = false)
-    @ElementCollection
+    @Column( nullable = false)
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private List<String> books = new ArrayList<>();
 
     @Column(nullable = false)

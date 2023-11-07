@@ -32,7 +32,7 @@ public class User extends BaseEntity {
     @Column
     private String email;
 
-    @Column(columnDefinition = "String[]")
-    @ElementCollection
+    @Column
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 }

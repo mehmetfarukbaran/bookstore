@@ -1,5 +1,6 @@
 package com.mehmetfaruk.bookstore.book.model;
 
+import com.mehmetfaruk.bookstore.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.Date;
 @Table
 @Entity
 @Data
-public class Book implements Serializable {
+public class Book extends BaseEntity implements Serializable {
 
     @Id
     @Column

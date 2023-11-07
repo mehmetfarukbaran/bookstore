@@ -11,7 +11,4 @@ public class BookstoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
-
-
-	// TODO: 6.11.2023 createdAt ve updatedAt'ler baseEntity içerisine alınacak
 }

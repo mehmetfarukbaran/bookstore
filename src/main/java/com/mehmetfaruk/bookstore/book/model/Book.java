@@ -3,6 +3,7 @@ package com.mehmetfaruk.bookstore.book.model;
 import com.mehmetfaruk.bookstore.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,9 +11,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.io.Serializable;
 import java.util.Date;
 
+@Data
 @Table
 @Entity
-@Data
+@EqualsAndHashCode(callSuper = true)
 public class Book extends BaseEntity implements Serializable {
 
     @Id

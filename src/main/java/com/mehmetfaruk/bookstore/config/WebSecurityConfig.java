@@ -23,6 +23,7 @@ public class WebSecurityConfig {
                         //.requestMatchers("/api/v1/**").authenticated()
                         .anyRequest().permitAll())
                 .httpBasic();
+        http.headers().frameOptions().disable();
         return http.build();
     }
 }

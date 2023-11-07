@@ -22,17 +22,25 @@ public class Order implements Serializable {
     @GeneratedValue(generator = "user_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", initialValue = 1000)
     private Long id;
+    @Column(nullable = false)
     private Long userId;
+
+    @Column(nullable = false)
     private Double totalPrice;
-    // TODO: 7.11.2023 bura neden olmuyor bi araştır bakam
-    //private List<Book> books;
+
+    @Column(columnDefinition = "String[]", nullable = false)
+    @ElementCollection
+    private List<String> books = new ArrayList<>();
+
+    @Column(nullable = false)
     private Date orderDate;
+
+    @Column
     @CreatedDate
     private Date createdAt;
+
+    @Column
     @LastModifiedDate
     private Date updatedAt;
-
-    //User ID, Total Price, List of Books, Order Date, CreatedAt,
-    //UpdatedAt.
 
 }

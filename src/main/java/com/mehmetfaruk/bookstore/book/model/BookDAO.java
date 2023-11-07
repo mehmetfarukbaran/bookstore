@@ -12,6 +12,4 @@ public class BookDAO {
     private String author;
     private Double price;
     private Long stockQuantity;
-    private Date createdAt;
-    private Date updatedAt;
 }

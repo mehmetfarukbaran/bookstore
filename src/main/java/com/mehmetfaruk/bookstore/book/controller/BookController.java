@@ -5,6 +5,7 @@ import com.mehmetfaruk.bookstore.book.model.BookDAO;
 import com.mehmetfaruk.bookstore.book.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public class BookController {
 
     // TODO: 7.11.2023 admin only
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<BookDAO> newBook(@RequestBody BookDAO bookDAO){
         return ResponseEntity.ok(bookService.saveBook(bookDAO));
     }

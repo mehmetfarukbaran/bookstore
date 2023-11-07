@@ -19,14 +19,16 @@ public class Book implements Serializable {
     @GeneratedValue(generator = "book_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "book_gen", sequenceName = "book_seq", initialValue = 1000000)
     private Long isbn;
-    private String title;
-    private String author;
-    @Getter
-    private Double price;
-    private Long stockQuantity;
-    @CreatedDate
-    private Date createdAt;
-    @LastModifiedDate
-    private Date updatedAt;
 
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
+    private String author;
+
+    @Column(nullable = false)
+    private Double price;
+
+    @Column(nullable = false)
+    private Long stockQuantity;
 }

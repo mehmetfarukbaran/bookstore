@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    Page<Book> findAllByOrderByCreatedAtDesc(Pageable pageable);
+    Page<Book> findByOrderByCreatedAtDesc(Pageable pageable);
     Book findByIsbn(Long isbn);
     void deleteByIsbn(Long isbn);
 }

@@ -18,7 +18,11 @@ To run this application on your local machine create a docker container which ex
 Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
 
 ```shell
-mvn spring-boot:run
+http://localhost:8080/swagger-ui/index.html
+```
+
+```shell
+http://localhost:8080/h2-console
 ```
 
 ## Deploying the application to OpenShift
@@ -43,7 +47,7 @@ If you want to access the app from outside your OpenShift installation, you have
 oc expose springboot-sample-app --hostname=www.example.com
 ```
 
-## Copyright
+## Project summary
 
 Objective:
 Design and implement a RESTful API for an online bookstore using Java and Spring Boot. This API should provide essential functionality for both the user and the bookstore admin.

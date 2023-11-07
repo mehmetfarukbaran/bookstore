@@ -27,22 +27,20 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBookByIsbn(isbn));
     }
 
-    // TODO: 7.11.2023 admin only
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<BookDAO> newBook(@RequestBody BookDAO bookDAO){
         return ResponseEntity.ok(bookService.saveBook(bookDAO));
     }
 
-    // TODO: 7.11.2023 admin only 
     @PutMapping("/{isbn}")
-    public ResponseEntity<BookDAO> updateBook(@PathVariable Long isbn){
-        return ResponseEntity.ok(bookService.updateBook(isbn));
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<BookDAO> updateBook(@PathVariable Long isbn, @RequestBody BookDAO bookDAO){
+        return ResponseEntity.ok(bookService.updateBook(isbn,bookDAO));
     }
 
-    // TODO: 7.11.2023 admin only 
     @DeleteMapping("/{isbn}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> deleteBook(@PathVariable Long isbn){
         bookService.deleteBook(isbn);
         return ResponseEntity.ok().build();

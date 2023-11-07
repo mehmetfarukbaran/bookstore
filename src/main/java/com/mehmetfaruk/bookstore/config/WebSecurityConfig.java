@@ -20,9 +20,10 @@ public class WebSecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        //.requestMatchers("/api/v1/**").authenticated()
-                        .anyRequest().permitAll())
+                        .requestMatchers("/api/v1/**").authenticated()
+                        .anyRequest().authenticated())
                 .httpBasic();
+
         http.headers().frameOptions().disable();
         return http.build();
     }

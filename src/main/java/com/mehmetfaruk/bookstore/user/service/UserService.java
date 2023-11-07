@@ -7,6 +7,9 @@ import com.mehmetfaruk.bookstore.user.repo.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -20,13 +23,15 @@ public class UserService {
 
     public void createAdminIfNoUser(){
         if (userRepository.count() == 0){
+            List<String> roles = new ArrayList<>();
+            roles.add("ADMIN");
             User user = new User();
             user.setUsername("admin");
             user.setPassword("admin");
+            user.setEmail("admin@admin.com");
+            user.setRoles(roles);
             userRepository.save(user);
         }
     }
-    // `POST /users/signup`: Register a new user.
-    //- `POST /users/login`: Authenticate a user and return a token (JWT
-    //preferred).
+
 }

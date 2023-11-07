@@ -18,7 +18,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderDAO> newOrder(@Valid @RequestBody OrderDAO orderDAO){
+    public ResponseEntity<OrderDAO> newOrder(@Valid @RequestBody OrderDAO orderDAO) throws Exception {
         return ResponseEntity.ok(orderService.newOrder(orderDAO));
     }
 

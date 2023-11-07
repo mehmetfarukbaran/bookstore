@@ -15,6 +15,8 @@ public class UserMapper {
         userDAO.setId(user.getId());
         userDAO.setUsername(user.getUsername());
         userDAO.setPassword(user.getPassword());
+        userDAO.setEmail(user.getEmail());
+        userDAO.setRoles(user.getRoles());
 
         return userDAO;
     }
@@ -28,6 +30,8 @@ public class UserMapper {
         user.setId(userDAO.getId());
         user.setUsername(userDAO.getUsername());
         user.setPassword(userDAO.getPassword());
+        user.setEmail(userDAO.getEmail());
+        user.setRoles(userDAO.getRoles());
 
         return user;
     }

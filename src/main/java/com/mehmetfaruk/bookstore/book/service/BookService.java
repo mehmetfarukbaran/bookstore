@@ -5,6 +5,7 @@ import com.mehmetfaruk.bookstore.book.model.BookDAO;
 import com.mehmetfaruk.bookstore.book.model.BookMapper;
 import com.mehmetfaruk.bookstore.book.repo.BookRepository;
 import lombok.AllArgsConstructor;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class BookService {
     private final BookMapper bookMapper;
 
     public List<BookDAO> getBooks(Pageable pageable){
-        return bookRepository.findAllByOrderByCreatedAtDesc(pageable).map(bookMapper::toDAO).stream().toList();
+        return bookRepository.findByOrderByCreatedAtDesc(pageable).map(bookMapper::toDAO).stream().toList();
     }
 
     public BookDAO getBookByIsbn(Long isbn){
@@ -29,12 +30,18 @@ public class BookService {
         return bookMapper.toDAO(bookRepository.save(bookMapper.toEntity(bookDAO)));
     }
 
-    public BookDAO updateBook(Long isbn){
+    public BookDAO updateBook(Long isbn, BookDAO bookDAO){
         Book book = bookRepository.findByIsbn(isbn);
         if (book == null){
             return null;
         }
-        return null;
+
+        book.setStockQuantity(bookDAO.getStockQuantity());
+        book.setAuthor(bookDAO.getAuthor());
+        book.setTitle(bookDAO.getTitle());
+        book.setPrice(bookDAO.getPrice());
+
+        return bookMapper.toDAO(bookRepository.save(book));
     }
 
     public void deleteBook(Long isbn){

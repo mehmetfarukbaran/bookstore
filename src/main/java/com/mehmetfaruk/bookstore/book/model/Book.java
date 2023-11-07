@@ -4,14 +4,17 @@ import com.mehmetfaruk.bookstore.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Table
 @Entity
-@EqualsAndHashCode(callSuper = true)
-public class Book extends BaseEntity implements Serializable {
+//@EqualsAndHashCode(callSuper = true)
+public class Book implements Serializable {
 
     @Id
     @Column
@@ -30,4 +33,13 @@ public class Book extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     private Long stockQuantity;
+
+    @Column
+    @CreatedDate
+    private Date createdAt;
+
+    @Column
+    @LastModifiedDate
+    private Date updatedAt;
+
 }

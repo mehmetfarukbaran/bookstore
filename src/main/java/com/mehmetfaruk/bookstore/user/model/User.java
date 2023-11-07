@@ -32,7 +32,7 @@ public class User extends BaseEntity {
     @Column
     private String email;
 
-    @Column(columnDefinition = "String[]", nullable = false)
+    @Column(columnDefinition = "String[]")
     @ElementCollection
     private List<String> roles = new ArrayList<>();
 }

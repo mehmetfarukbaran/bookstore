@@ -1,6 +1,7 @@
 package com.mehmetfaruk.bookstore.order.service;
 
 import com.mehmetfaruk.bookstore.order.model.OrderDAO;
+import com.mehmetfaruk.bookstore.order.model.OrderMapper;
 import com.mehmetfaruk.bookstore.order.repo.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,19 +13,18 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final OrderMapper orderMapper;
 
     public OrderDAO newOrder(OrderDAO orderDAO){
-        return null;
+        return orderMapper.toDAO(orderRepository.save(orderMapper.toEntity(orderDAO)));
     }
 
     public List<OrderDAO> getOrdersByUserId(Long userId){
-        return null;
+        return orderRepository.findByUserId(userId).stream().map(orderMapper::toDAO).toList();
     }
 
     public OrderDAO getOrderDetails(Long id){
-        return null;
+        return orderRepository.findById(id).map(orderMapper::toDAO).orElse(null);
     }
-    //- `POST /orders`: Place a new order for a user with a minimum price of 25$.
-    //- `GET /orders/{userId}`: Get all orders for a specific user ordered by update date DESC.
-    //- `GET /orders/details/{orderId}`: Get details of a specific order by its ID with the books under that order.
+
 }

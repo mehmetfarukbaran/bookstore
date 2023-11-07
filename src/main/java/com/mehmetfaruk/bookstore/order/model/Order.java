@@ -24,6 +24,7 @@ public class Order implements Serializable {
     private Long id;
     private Long userId;
     private Double totalPrice;
+    // TODO: 7.11.2023 bura neden olmuyor bi araştır bakam
     //private List<Book> books;
     private Date orderDate;
     @CreatedDate

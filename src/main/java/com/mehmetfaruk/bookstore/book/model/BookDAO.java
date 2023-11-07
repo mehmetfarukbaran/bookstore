@@ -7,8 +7,7 @@ import java.util.Date;
 
 @Data
 public class BookDAO {
-    private Long id;
-    private String isbn;
+    private Long isbn;
     private String title;
     private String author;
     private Double price;

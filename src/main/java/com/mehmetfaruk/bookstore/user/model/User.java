@@ -2,6 +2,8 @@ package com.mehmetfaruk.bookstore.user.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.util.Date;
 
@@ -18,7 +20,9 @@ public class User {
     private String name;
     private String password;
     private String email;
+    @CreatedDate
     private Date createdAt;
+    @LastModifiedDate
     private Date updateAt;
 
     //Name, Email, Password (encrypted), CreatedAt, UpdatedAt.

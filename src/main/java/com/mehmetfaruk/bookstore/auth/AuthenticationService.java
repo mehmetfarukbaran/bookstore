@@ -29,9 +29,9 @@ public class AuthenticationService implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         String name = authentication.getName();
-        String password = (authentication.getCredentials().toString());
+        String password = passwordEncoder.encode(authentication.getCredentials().toString());
 
-        userService.createAdminIfNoUser();
+        userService.createAdminIfNoUser(name,password);
         User user = userRepository.findByUsernameAndPassword(name, password);
 
         if (user == null) {

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
@@ -24,18 +25,14 @@ public class WebSecurityConfig {
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/api/v1/users/signUp","/api/v1/users/login").permitAll()
                     .requestMatchers(HttpMethod.GET,"/api/v1/books/**").permitAll()
-                    .requestMatchers(HttpMethod.GET,"/h2-console/**").permitAll()
                     .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**", "/swagger-resources", "/v3/api-docs/**", "/proxy/**").permitAll()
-                    .anyRequest().authenticated())
+                    .requestMatchers("/h2-console/**").permitAll()
+                    .requestMatchers("/test").authenticated()
+                    .anyRequest().permitAll())
             .httpBasic();
         // Configuration for swagger-ui
         http.headers().frameOptions().disable();
 
-        /*
-                    .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-            .and()
-            .csrf().ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
-         */
         return http.build();
     }
 
@@ -46,6 +43,6 @@ public class WebSecurityConfig {
 
     @Bean
     public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
+        return new StandardPasswordEncoder();
     }
 }

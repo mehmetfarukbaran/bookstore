@@ -24,13 +24,13 @@ public class UserService {
         return userMapper.toDAO(userRepository.save(userMapper.toEntity(userDAO)));
     }
 
-    public void createAdminIfNoUser(){
+    public void createAdminIfNoUser(String name, String password){
         if (userRepository.count() == 0){
             List<String> roles = new ArrayList<>();
             roles.add("ADMIN");
             User user = new User();
-            user.setUsername("admin");
-            user.setPassword(("admin"));
+            user.setUsername(name);
+            user.setPassword(password);
             user.setEmail("admin@admin.com");
             user.setRoles(roles);
             userRepository.save(user);

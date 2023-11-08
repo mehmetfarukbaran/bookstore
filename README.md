@@ -1,6 +1,6 @@
-# bookstore-sample-app
+# BookStore Sample App
 
-Bookstore [Spring Boot](http://projects.spring.io/spring-boot/) sample app.
+ This Bookstore sample app powered with [Spring Boot](http://projects.spring.io/spring-boot/).
 
 ## Requirements
 
@@ -11,7 +11,7 @@ For building and running the application you need:
 
 ## Running the application locally
 
-To run this application on your local machine create a docker container which extends postgres image. One way is to execute the `main` method in the `de.codecentric.springbootsample.Application` class from your IDE.
+To run this application on your local machine execute the `main` method in the `com.mehmetfaruk.bookstore.BookstoreApplication` class from your IDE.
 
 Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
 
@@ -23,9 +23,6 @@ http://localhost:8080/swagger-ui/index.html
 http://localhost:8080/h2-console
 ```
 
-## Deploying the application to OpenShift
-
-The easiest way to deploy the sample application to OpenShift is to use the [OpenShift CLI](https://docs.openshift.org/latest/cli_reference/index.html):
 
 ```shell
 oc new-app codecentric/springboot-maven3-centos~https://github.com/codecentric/springboot-sample-app

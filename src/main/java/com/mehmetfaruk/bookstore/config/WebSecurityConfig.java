@@ -25,7 +25,7 @@ public class WebSecurityConfig {
                     .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**", "/swagger-resources", "/v3/api-docs/**", "/proxy/**").permitAll()
                     .requestMatchers("/h2-console/**").permitAll()
                     .requestMatchers("/test").authenticated()
-                    .anyRequest().permitAll())
+                    .anyRequest().authenticated())
             .httpBasic();
         // Configuration for swagger-ui
         http.headers().frameOptions().disable();

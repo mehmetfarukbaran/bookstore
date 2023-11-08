@@ -5,6 +5,7 @@ import com.mehmetfaruk.bookstore.book.model.BookDAO;
 import com.mehmetfaruk.bookstore.book.model.BookMapper;
 import com.mehmetfaruk.bookstore.book.repo.BookRepository;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -30,10 +31,10 @@ public class BookService {
         return bookMapper.toDAO(bookRepository.save(bookMapper.toEntity(bookDAO)));
     }
 
-    public BookDAO updateBook(Long isbn, BookDAO bookDAO){
+    public BookDAO updateBook(Long isbn, BookDAO bookDAO) throws Exception {
         Book book = bookRepository.findByIsbn(isbn);
         if (book == null){
-            return null;
+            throw new Exception("Book not found.");
         }
 
         book.setStockQuantity(bookDAO.getStockQuantity());

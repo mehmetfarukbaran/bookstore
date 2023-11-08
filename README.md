@@ -1,7 +1,5 @@
 # bookstore-sample-app
 
-[![Coverage Status](https://coveralls.io/repos/github/codecentric/springboot-sample-app/badge.svg?branch=master)](https://coveralls.io/github/codecentric/springboot-sample-app?branch=master)
-
 Bookstore [Spring Boot](http://projects.spring.io/spring-boot/) sample app.
 
 ## Requirements

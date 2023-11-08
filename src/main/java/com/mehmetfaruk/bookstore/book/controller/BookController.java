@@ -2,6 +2,7 @@ package com.mehmetfaruk.bookstore.book.controller;
 
 import com.mehmetfaruk.bookstore.book.model.BookDAO;
 import com.mehmetfaruk.bookstore.book.service.BookService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
+    @RateLimiter(name = "getBooksRateLimiter")
     public ResponseEntity<List<BookDAO>> getBooks(Pageable pageable){
         return ResponseEntity.ok(bookService.getBooks(pageable));
     }

@@ -33,7 +33,7 @@ public class OrderService {
     }
 
     public List<OrderDAO> getOrdersByUserId(Long userId){
-        return orderRepository.findByUserId(userId).stream().map(orderMapper::toDAO).toList();
+        return orderRepository.findByUserIdOrderByUpdatedDateDesc(userId).stream().map(orderMapper::toDAO).toList();
     }
 
     public OrderDAO getOrderDetails(Long id){

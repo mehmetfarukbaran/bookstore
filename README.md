@@ -13,64 +13,52 @@ For building and running the application you need:
 
 To run this application on your local machine execute the `main` method in the `com.mehmetfaruk.bookstore.BookstoreApplication` class from your IDE.
 
-Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
+## Usage of H2 Database
+This application utilizes the H2 database. You can access the H2 database console using the following URL:
 
-## admin admin ile default girm ayrıntısını yaz
-
-```shell
-http://localhost:8080/swagger-ui/index.html
-```
-
-```shell
-http://localhost:8080/h2-console
-```
+`http://localhost:8080/h2-console` or click [here](http://localhost:8080/h2-console).
 
 
-```shell
-oc new-app codecentric/springboot-maven3-centos~https://github.com/codecentric/springboot-sample-app
-```
+## Swagger Usage
+The application uses Swagger for API documentation. You can access the Swagger UI at the following URL:
 
-This will create:
+`http://localhost:8080/swagger-ui/index.html` or click [here](http://localhost:8080/swagger-ui/index.html).
 
-* An ImageStream called "springboot-maven3-centos"
-* An ImageStream called "springboot-sample-app"
-* A BuildConfig called "springboot-sample-app"
-* DeploymentConfig called "springboot-sample-app"
-* Service called "springboot-sample-app"
+## Spring Security Usage
+This application employs Spring Security 6 for security and authorization. Spring SecurityFilterChain is used for security configuration.
 
-If you want to access the app from outside your OpenShift installation, you have to expose the springboot-sample-app service:
+## Basic Authentication
+The application utilizes basic authentication for user authentication. Authentication with a username and password is required to access some endpoints.
 
-```shell
-oc expose springboot-sample-app --hostname=www.example.com
-```
+## Role-Based Endpoint Design
+The application is designed to restrict access to certain URLs to users that not authenticated.
 
 ## Project summary
 
-Objective:
-Design and implement a RESTful API for an online bookstore using Java and Spring Boot. This API should provide essential functionality for both the user and the bookstore admin.
-Requirements:
-1. Entities:
-- Book: ISBN (unique identifier), Title, Author, Price, Stock Quantity, CreatedAt,
-  UpdatedAt.
-- User: ID, Name, Email, Password (encrypted), CreatedAt, UpdatedAt.
-- Order: Order ID, User ID, Total Price, List of Books, Order Date, CreatedAt,
-  UpdatedAt.
-2. API Endpoints:
-- Book:
-- `GET /books`: Retrieve a list of all books ordered by creation date DESC.
-- `GET /books/{isbn}`: Retrieve details of a book by ISBN.
-- `POST /books`: Add a new book (Admin only).
-- `PUT /books/{isbn}`: Update details of a book (Admin only).
-- `DELETE /books/{isbn}`: Delete a book by ISBN (Admin only).
-- User:
-- `POST /users/signup`: Register a new user.
-- `POST /users/login`: Authenticate a user and return a token (JWT
-  preferred).
-- Order:
-- `POST /orders`: Place a new order for a user with a minimum price of 25$.
-- `GET /orders/{userId}`: Get all orders for a specific user ordered by update date DESC.
-- `GET /orders/details/{orderId}`: Get details of a specific order by its ID with the books under that order.
-3. Features:
+## Entities:
+- Book: ISBN (unique identifier), Title, Author, Price, Stock Quantity, CreatedDate,
+  UpdatedDate.
+- User: ID, Name, Email, Password (encrypted), CreatedDate, UpdatedDate.
+- Order: Order ID, User ID, Total Price, List of Books, Order Date, CreatedDate,
+  UpdatedDate.
+-
+
+## API Endpoints:
+#### Book:
+- `GET /books`: Retrieves a list of all books ordered by creation date DESC and paging included.
+- `GET /books/{isbn}`: Retrieves details of a book by ISBN.
+- `POST /books`: Adds a new book (Admin only).
+- `PUT /books/{isbn}`: Updates details of a book (Admin only).
+- `DELETE /books/{isbn}`: Deletes a book by ISBN (Admin only).
+#### User:
+- `POST /users/signup`: Registers a new user.
+- `POST /users/login`: Authenticates a user and returns a token.
+#### Order:
+- `POST /orders`: Places a new order for a user with a minimum price of 25$.
+- `GET /orders/{userId}`: Gets all orders for a specific user ordered by update date DESC.
+- `GET /orders/details/{orderId}`: Gets details of a specific order by its ID with the books under that order.
+
+Features:
 - Use Spring Boot's layered architecture: Controller, Service, DAO, Entity.
 - Implement security: Passwords should be securely hashed, and only
   authenticated users should be able to place orders. Admin operations (e.g.,

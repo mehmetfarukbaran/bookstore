@@ -11,6 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class AuthenticationService implements AuthenticationProvider {
 
     private final UserRepository userRepository;
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -30,11 +32,17 @@ public class AuthenticationService implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
 
         userService.createAdminIfNoUser(name,password);
-        User user = userRepository.findByUsernameAndPassword(name, password);
+        User user = userRepository.findByUsername(name);
 
         if (user == null) {
             throw new AuthenticationException("User not found") {
             };
+        }else {
+            boolean isPasswordsEqual = passwordEncoder.matches(password,user.getPassword());
+            if (!isPasswordsEqual){
+                throw new AuthenticationException("Invalid password.") {
+                };
+            }
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>();

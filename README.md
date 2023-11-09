@@ -15,6 +15,8 @@ To run this application on your local machine execute the `main` method in the `
 
 Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
 
+## admin admin ile default girm ayrıntısını yaz
+
 ```shell
 http://localhost:8080/swagger-ui/index.html
 ```

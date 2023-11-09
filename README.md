@@ -18,22 +18,24 @@ This application utilizes the H2 database. You can access the H2 database consol
 
 `http://localhost:8080/h2-console` or click [here](http://localhost:8080/h2-console).
 
+### Admin created automatically
+The application generates an admin with the username and password in the first request you send.
 
-## Swagger Usage
+### Swagger Usage
 The application uses Swagger for API documentation. You can access the Swagger UI at the following URL:
 
 `http://localhost:8080/swagger-ui/index.html` or click [here](http://localhost:8080/swagger-ui/index.html).
 
-## Spring Security Usage
+### Spring Security Usage
 This application employs Spring Security 6 for security and authorization. Spring SecurityFilterChain is used for security configuration.
 
-## Basic Authentication
+### Basic Authentication
 The application utilizes basic authentication for user authentication. Authentication with a username and password is required to access some endpoints.
 
-## Role-Based Endpoint Design
+### Role-Based Endpoint Design
 The application is designed to restrict access to certain URLs to users that not authenticated.
 
-## Project summary
+# Project summary
 
 ## Entities:
 - Book: ISBN (unique identifier), Title, Author, Price, Stock Quantity, CreatedDate,
@@ -41,7 +43,7 @@ The application is designed to restrict access to certain URLs to users that not
 - User: ID, Name, Email, Password (encrypted), CreatedDate, UpdatedDate.
 - Order: Order ID, User ID, Total Price, List of Books, Order Date, CreatedDate,
   UpdatedDate.
--
+
 
 ## API Endpoints:
 #### Book:
@@ -58,20 +60,8 @@ The application is designed to restrict access to certain URLs to users that not
 - `GET /orders/{userId}`: Gets all orders for a specific user ordered by update date DESC.
 - `GET /orders/details/{orderId}`: Gets details of a specific order by its ID with the books under that order.
 
-Features:
-- Use Spring Boot's layered architecture: Controller, Service, DAO, Entity.
-- Implement security: Passwords should be securely hashed, and only
-  authenticated users should be able to place orders. Admin operations (e.g.,
-  adding or deleting a book) should require admin privileges.
-- Integrate a database of your choice (e.g., H2 for simplicity, MySQL, or
-  PostgreSQL for more realism) using Spring Data JPA.
-- Include basic error handling (Book not found, Insufficient stock, Unauthorized user, Minimum Price For Order).
-
-
-4. Bonus:
-- Implement pagination for the `GET /books` endpoint.
-- Implement HATEOAS (Hypermedia as the Engine of Application State) to guide
-  the clients on possible interactions with your API.
-- Implement Swagger UI integration.
-- Add a simple rate-limiting mechanism to prevent abuse.
-- Include unit and integration tests for your application using JUnit and MockMvc.
+### Features:
+- Spring Boot's layered architecture: Controller, Service, DAO, Entity.
+- Passwords are securely hashed, and only authenticated users are able to place orders. Admin operations (e.g., adding or deleting a book) requires admin privileges.
+- H2 database integration using Spring Data JPA.
+- Basic error handling (Book not found, Insufficient stock, Unauthorized user, Minimum Price For Order).

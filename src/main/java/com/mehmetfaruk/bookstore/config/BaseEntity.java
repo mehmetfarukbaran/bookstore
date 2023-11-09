@@ -1,14 +1,26 @@
 package com.mehmetfaruk.bookstore.config;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class BaseEntity {
+@Data
+@MappedSuperclass
+public abstract class BaseEntity implements Serializable {
 
     @CreatedDate
-    private Date createdAt;
+    @Column(updatable = false)
+    private Date createdDate;
+
     @LastModifiedDate
-    private Date updatedAt;
+    @Column
+    private Date updatedDate;
+
 }

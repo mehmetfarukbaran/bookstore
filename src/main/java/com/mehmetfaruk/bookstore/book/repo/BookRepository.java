@@ -6,12 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    Page<Book> findByOrderByCreatedAtDesc(Pageable pageable);
+    Page<Book> findByOrderByCreatedDateDesc(Pageable pageable);
     Book findByIsbn(Long isbn);
     void deleteByIsbn(Long isbn);
 }

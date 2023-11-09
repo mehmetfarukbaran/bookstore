@@ -5,8 +5,6 @@ import com.mehmetfaruk.bookstore.book.model.BookDAO;
 import com.mehmetfaruk.bookstore.book.model.BookMapper;
 import com.mehmetfaruk.bookstore.book.repo.BookRepository;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +18,7 @@ public class BookService {
     private final BookMapper bookMapper;
 
     public List<BookDAO> getBooks(Pageable pageable){
-        return bookRepository.findByOrderByCreatedAtDesc(pageable).map(bookMapper::toDAO).stream().toList();
+        return bookRepository.findByOrderByCreatedDateDesc(pageable).map(bookMapper::toDAO).stream().toList();
     }
 
     public BookDAO getBookByIsbn(Long isbn){

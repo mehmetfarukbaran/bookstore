@@ -4,7 +4,9 @@ import com.mehmetfaruk.bookstore.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,8 @@ import java.util.List;
 @Table
 @Entity
 @EqualsAndHashCode(callSuper = true)
-public class User extends BaseEntity {
+@EntityListeners(AuditingEntityListener.class)
+public class User extends BaseEntity implements Serializable {
 
     @Id
     @Column

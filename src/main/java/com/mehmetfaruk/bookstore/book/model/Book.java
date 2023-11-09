@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,8 +14,9 @@ import java.util.Date;
 @Data
 @Table
 @Entity
+@EntityListeners({AuditingEntityListener.class})
 //@EqualsAndHashCode(callSuper = true)
-public class Book implements Serializable {
+public class Book extends BaseEntity implements Serializable {
 
     @Id
     @Column
@@ -33,13 +35,5 @@ public class Book implements Serializable {
 
     @Column(nullable = false)
     private Long stockQuantity;
-
-    @Column
-    @CreatedDate
-    private Date createdAt;
-
-    @Column
-    @LastModifiedDate
-    private Date updatedAt;
 
 }

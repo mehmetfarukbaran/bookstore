@@ -7,6 +7,7 @@ import com.mehmetfaruk.bookstore.order.repo.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,6 +28,7 @@ public class OrderService {
         if (totalPrice < 25){
             throw new Exception("Price must be at least 25.");
         }
+        orderDAO.setOrderDate(new Date());
         return orderMapper.toDAO(orderRepository.save(orderMapper.toEntity(orderDAO)));
     }
 

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.List;
 @Table
 @Entity
 @EqualsAndHashCode(callSuper = true)
+@EntityListeners(AuditingEntityListener.class)
 public class Order extends BaseEntity implements Serializable {
 
     @Id
@@ -39,13 +41,5 @@ public class Order extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     private Date orderDate;
-
-    @Column
-    @CreatedDate
-    private Date createdAt;
-
-    @Column
-    @LastModifiedDate
-    private Date updatedAt;
 
 }
